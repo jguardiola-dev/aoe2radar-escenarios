@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aoe2radar-escenarios"
+version = "1.0.0"
+description = "Genera escenarios de AoE2 DE (.aoe2scenario) a partir de un JSON; herramienta aparte de aoe2radar"
+readme = "README.md"
+license = { text = "GPL-3.0-only" }
+requires-python = ">=3.8"
+dependencies = ["AoE2ScenarioParser==0.9.1"]
+
+[project.scripts]
+aoe2radar-escenarios = "aoe2radar_escenarios.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["aoe2radar_escenarios*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]

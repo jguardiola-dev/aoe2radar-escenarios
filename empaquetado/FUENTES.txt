@@ -1,0 +1,24 @@
+aoe2radar-escenarios - código fuente / source code
+=================================================
+
+Esta carpeta contiene escenarios.exe, un programa APARTE de aoe2radar, con licencia GNU GPL v3 (ver LICENSE en esta
+misma carpeta). aoe2radar (licencia MIT) solo lo ejecuta como proceso externo y se comunica con él por archivos
+(un JSON de entrada y el .aoe2scenario de salida). Son dos programas distintos distribuidos juntos (agregación).
+
+This folder contains escenarios.exe, a SEPARATE program from aoe2radar, licensed under the GNU GPL v3 (see LICENSE in
+this folder). aoe2radar (MIT license) only runs it as an external process and talks to it through files (a JSON input
+and the .aoe2scenario output). They are two separate programs distributed together (aggregation).
+
+Código fuente completo de escenarios.exe / Complete corresponding source of escenarios.exe:
+  https://github.com/jguardiola-dev/aoe2radar-escenarios   (la etiqueta de esta versión / the tag of this version: v{VERSION})
+
+Incluye / It includes:
+  - AoE2ScenarioParser 0.9.1, (c) KSneijders and contributors, GNU GPL v3
+      https://github.com/KSneijders/AoE2ScenarioParser
+      https://pypi.org/project/AoE2ScenarioParser/0.9.1/
+    y sus dependencias / and its dependencies: deprecation (Apache-2.0), ordered-set (MIT), typing_extensions (PSF),
+    packaging (Apache-2.0 / BSD-2-Clause)
+  - Python 3.11 runtime, Python Software Foundation License  https://docs.python.org/3/license.html
+  - PyInstaller bootloader, GNU GPL v2 with the PyInstaller bootloader exception  https://pyinstaller.org/en/stable/license.html
+
+Para reconstruirlo / To rebuild it: ver README.md del repositorio (empaquetado\construir-exe.ps1).

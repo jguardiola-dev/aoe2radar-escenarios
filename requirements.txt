@@ -1,0 +1,2 @@
+# Dependencias de ejecución (versión fijada: el formato de escenario cambia entre versiones de la librería)
+AoE2ScenarioParser==0.9.1

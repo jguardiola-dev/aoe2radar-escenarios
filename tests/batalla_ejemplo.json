@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "tipo": "batalla",
+  "nombre": "10 caballeros + 5 ballesteros contra 20 piqueros",
+  "idioma": "es",
+  "separacion": 8,
+  "ring": {"activo": true, "lado": 0},
+  "colina": {"bajo": 1, "altura": 2},
+  "control": {"p2_ataca": true, "p1_ataca": true, "espera_s": 3},
+  "medir": true,
+  "jugadores": [
+    {"civ": "Franks", "edad": 4, "tecnologias": [67, 68, 75, 81, 82, 80, 199, 200, 201, 211, 212, 219], "por_fila": 8, "espaciado": 1.0,
+     "grupos": [{"unidad": 38, "cantidad": 10, "nombre": "Caballero"}, {"unidad": 24, "cantidad": 5, "nombre": "Ballestero"}]},
+    {"civ": "Teutons", "edad": 4, "tecnologias": [], "por_fila": 10, "espaciado": 1.0,
+     "grupos": [{"unidad": 358, "cantidad": 20, "nombre": "Piquero"}]}
+  ]
+}
