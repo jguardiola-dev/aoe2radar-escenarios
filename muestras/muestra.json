@@ -1,0 +1,19 @@
+{
+ "version": 1,
+ "tipo": "batalla",
+ "nombre": "10 Caballeros + 5 Ballesteros (francos) vs 20 Piqueros (teutones)",
+ "idioma": "es",
+ "separacion": 8,
+ "ring": {"activo": true, "lado": 0},
+ "colina": {"bajo": 1, "altura": 2},
+ "control": {"p2_ataca": true, "p1_ataca": true, "espera_s": 3},
+ "medir": true,
+ "jugadores": [
+  {"civ": "Franks", "edad": 4, "por_fila": 8, "espaciado": 1.05,
+   "tecnologias": [67, 68, 74, 75, 76, 77, 80, 81, 82, 199, 200, 211, 212],
+   "grupos": [{"unidad": 38, "cantidad": 10, "nombre": "Caballero"}, {"unidad": 24, "cantidad": 5, "nombre": "Ballestero"}]},
+  {"civ": "Teutons", "edad": 4, "por_fila": 10, "espaciado": 0.65,
+   "tecnologias": [67, 68, 74, 75, 76, 77, 80, 81, 82, 199, 200, 211, 212, 219],
+   "grupos": [{"unidad": 358, "cantidad": 20, "nombre": "Piquero"}]}
+ ]
+}
