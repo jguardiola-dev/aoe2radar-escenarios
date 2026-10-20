@@ -2,7 +2,8 @@ Escenarios de ejemplo generados con aoe2radar-escenarios (para abrirlos en el ju
 
 Para jugarlos: copia el .aoe2scenario a
   %USERPROFILE%\Games\Age of Empires 2 DE\<tu perfil>\resources\_common\scenario
-y ábrelo en Un jugador › Escenario personalizado.
+y ábrelo en Un jugador › Escenario personalizado, con la dificultad en «Difícil».
+Al acabar la pelea, un aviso en pantalla dice quién gana.
 
 - «10 Caballeros + 5 Ballesteros (francos) vs 20 Piqueros (teutones)»: J1 francos (10 caballeros delante, 5 ballesteros
   detrás) en una colina, J2 teutones con 20 piqueros; los dos con la herrería completa que tiene su civ en Imperial;

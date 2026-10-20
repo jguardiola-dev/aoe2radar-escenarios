@@ -1,8 +1,11 @@
 """Tipo «batalla»: dos ejércitos frente a frente en un recinto, con mejoras, colina opcional y medición opcional.
 
 Decisiones (ver README):
-- J1 humano, J2 ordenador. J2 avanza atacando hacia J1 al cabo de ``control.espera_s`` segundos; J1 solo si
-  ``control.p1_ataca`` (aoe2radar lo activa al pedir medición, para que la pelea se resuelva sin tocar nada).
+- J1 humano, J2 ordenador. Todas las unidades en postura agresiva desde el primer instante. J2 avanza atacando hacia
+  J1 al cabo de ``control.espera_s`` segundos; J1 solo si ``control.p1_ataca`` (aoe2radar lo activa al pedir medición,
+  para que la pelea se resuelva sin tocar nada).
+- La dificultad de la IA no se puede fijar en el archivo (el formato no la guarda): el objetivo pide «Difícil» y un XS
+  avisa en el chat si no lo es. El objetivo, el aviso de inicio y «Gana J1/J2» van siempre (``piezas.avisos``).
 - Sin TC, sin aldeanos, sin recursos. Victoria «personalizada» sin condiciones: el escenario NO termina cuando un lado
   se queda sin unidades (así se puede leer el chat de la medición).
 """
@@ -11,7 +14,7 @@ from __future__ import annotations
 from AoE2ScenarioParser.datasets.trigger_lists.victory_condition import VictoryCondition
 
 from .. import entrada
-from ..piezas import colocacion, control, jugadores, mapa, medicion, mejoras
+from ..piezas import avisos, colocacion, control, jugadores, mapa, medicion, mejoras
 
 
 def generar(scn, raiz: dict) -> dict:
@@ -47,6 +50,7 @@ def generar(scn, raiz: dict) -> dict:
     if b.control.p2_ataca:
         ordenes.append((2, *plano.centros[0]))
     control.al_ataque(scn, plano.tamano, b.control.espera_s, ordenes)
+    avisos.anadir(scn, b.idioma, b.control.espera_s, b.control.p1_ataca, b.control.p2_ataca, b.medir)
     if b.medir:
         grupos = [[(g.unidad, g.nombre) for g in j.grupos] for j in b.jugadores]
         medicion.anadir(scn, medicion.script(grupos, b.control.espera_s, b.idioma))

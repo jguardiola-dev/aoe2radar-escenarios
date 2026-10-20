@@ -24,11 +24,16 @@ Hoy hay un tipo de escenario, `"batalla"`:
 - Las unidades en formación, una frente a otra, con la separación pedida.
 - **Colina** opcional: el terreno se eleva bajo J1 o bajo J2.
 - **Mejoras**: un trigger investiga al empezar las tecnologías pedidas (efecto «Research Technology» forzado).
-- **Quién controla qué**: J1 es humano y J2 ordenador. A los pocos segundos, J2 «ataca moviéndose» hacia J1 en postura
-  agresiva. Con `control.p1_ataca`, J1 también avanza solo (aoe2radar lo activa al pedir medición, para que la pelea se
+- **Quién controla qué**: J1 es humano y J2 ordenador. Todas las unidades en postura agresiva desde el primer instante.
+  A los pocos segundos, J2 «ataca moviéndose» hacia J1. Con `control.p1_ataca`, J1 también avanza solo (aoe2radar lo activa al pedir medición, para que la pelea se
   resuelva sin tocar nada y sea comparable con el simulador). J2 no lleva script de IA: si el juego le asigna la IA
   por defecto, puede que además micree. La victoria es «personalizada» sin condiciones: el escenario no se cierra al
   acabar la pelea, para poder leer el chat.
+- **Dificultad de la IA**: el formato de escenario no la guarda (se elige al lanzarlo). El objetivo pide «Difícil» y un
+  script XS avisa en el chat si la partida no está en Difícil.
+- **Textos en el escenario** (siempre): el objetivo (pestaña Mensajes › Instrucciones, se ve en el panel de objetivos),
+  un aviso en pantalla al empezar (quién eres y qué va a pasar) y, al quedarse un lado sin unidades militares, «Gana J1»,
+  «Gana J2» o «Empate» en pantalla durante 2 minutos.
 - **Medición** opcional: un script XS escribe en el chat, al quedarse un lado sin unidades, quién ganó, el tiempo de
   pelea (desde la orden de ataque) y los supervivientes por tipo.
 

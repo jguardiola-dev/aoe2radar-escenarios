@@ -8,14 +8,17 @@ from pathlib import Path
 
 import pytest
 from AoE2ScenarioParser.datasets.object_support import Civilization, StartingAge
+from AoE2ScenarioParser.datasets.conditions import ConditionId
 from AoE2ScenarioParser.datasets.effects import EffectId
+from AoE2ScenarioParser.datasets.trigger_lists.attack_stance import AttackStance
+from AoE2ScenarioParser.datasets.trigger_lists.object_type import ObjectType
 from AoE2ScenarioParser.datasets.terrains import TerrainId
 from AoE2ScenarioParser.datasets.trigger_lists.victory_condition import VictoryCondition
 from AoE2ScenarioParser.scenarios.aoe2_de_scenario import AoE2DEScenario
 
 from aoe2radar_escenarios import __main__ as cli
 from aoe2radar_escenarios import generador
-from aoe2radar_escenarios.piezas import colocacion, medicion
+from aoe2radar_escenarios.piezas import avisos, colocacion, medicion
 
 AQUI = Path(__file__).parent
 EJEMPLO = json.loads((AQUI / "batalla_ejemplo.json").read_text(encoding="utf-8"))
@@ -106,6 +109,45 @@ def test_medicion_xs_presente_y_valido(tmp_path):
     sin = copy.deepcopy(EJEMPLO)
     sin["medir"] = False
     assert medicion.NOMBRE_REGLA not in _generar(tmp_path, sin).xs_manager._get_scenario_xs()
+
+
+def test_postura_agresiva_desde_el_principio(tmp_path):
+    scn = _generar(tmp_path, EJEMPLO)
+    ts = {t.name: t for t in scn.trigger_manager.triggers}
+    postura = ts["aoe2radar: postura agresiva"]
+    assert postura.conditions == [], "sin espera: al empezar"
+    stances = [e for e in postura.effects if e.effect_type == EffectId.CHANGE_OBJECT_STANCE]
+    assert sorted(e.source_player for e in stances) == [1, 2]
+    assert all(e.attack_stance == AttackStance.AGGRESSIVE_STANCE for e in stances)
+
+
+@pytest.mark.parametrize("idioma, gana", [("es", "gana J1"), ("en", "P1 (blue) wins")])
+def test_objetivo_inicio_y_quien_gana(tmp_path, idioma, gana):
+    raiz = copy.deepcopy(EJEMPLO)
+    raiz["idioma"] = idioma
+    raiz["medir"] = False                      # los avisos no dependen de la medición
+    scn = _generar(tmp_path, raiz)
+    assert "Dif" in scn.message_manager.instructions or "Hard" in scn.message_manager.instructions
+    assert scn.message_manager.instructions == avisos.objetivo(idioma, 3, raiz["control"]["p1_ataca"], True, False), "se relee igual (tildes incluidas)"
+    ts = {t.name: t for t in scn.trigger_manager.triggers}
+    inicio = ts["aoe2radar: aviso de inicio"]
+    assert inicio.conditions == [] and inicio.effects[0].effect_type == EffectId.DISPLAY_INSTRUCTIONS
+    g1 = ts["aoe2radar: gana J1"]
+    assert gana in g1.effects[0].message
+    fewer = [c for c in g1.conditions if c.condition_type == ConditionId.OWN_FEWER_OBJECTS]
+    assert [(c.source_player, c.quantity, c.object_type) for c in fewer] == [(2, 0, ObjectType.MILITARY)]
+    assert "aoe2radar: gana J2" in ts and "aoe2radar: empate" in ts
+    xs = scn.xs_manager._get_scenario_xs()
+    assert avisos.NOMBRE_REGLA_DIFICULTAD in xs and "cDifficultyHard" in xs
+
+
+@pytest.mark.skipif(not XS_CHECK.is_file(), reason="xs-check no está (solo Windows)")
+@pytest.mark.parametrize("idioma", ["es", "en"])
+def test_xs_dificultad_pasa_xs_check(tmp_path, idioma):
+    f = tmp_path / "dificultad.xs"
+    f.write_text(avisos.script_dificultad(idioma), encoding="utf-8")
+    r = subprocess.run([str(XS_CHECK), "-w", str(f)], capture_output=True, text=True, encoding="utf-8", errors="replace")
+    assert r.returncode == 0, r.stdout + r.stderr
 
 
 @pytest.mark.skipif(not XS_CHECK.is_file(), reason="xs-check no está (solo Windows)")

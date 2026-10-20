@@ -64,6 +64,10 @@ Cada jugador:
 
 Como mucho 200 unidades por jugador.
 
+Además, sin campos propios: postura agresiva para todo J1 y J2 desde el principio; objetivo (Instrucciones), aviso de
+inicio y «Gana J1 / Gana J2 / Empate» en pantalla al quedarse un lado sin unidades militares, en el `idioma` pedido; y una
+regla XS que avisa en el chat si la dificultad no es «Difícil» (el formato no permite fijarla).
+
 ## Salida
 
 - Código 0: escenario escrito (escritura atómica: o el archivo queda entero o no queda).
