@@ -41,7 +41,7 @@ Códigos de salida: 0 bien, 2 entrada inválida, 3 error al generar. La escritur
 
 ## Cómo la usa aoe2radar
 
-aoe2radar (licencia MIT) **nunca** carga este código: escribe el JSON en una carpeta temporal, lanza `escenarios.exe`
+aoe2radar **nunca** carga este código: escribe el JSON en una carpeta temporal, lanza `escenarios.exe`
 como proceso externo (sin ventana, con tiempo límite), lee `--resultado` y deja el `.aoe2scenario` en la carpeta de
 escenarios del perfil del juego (`%USERPROFILE%\Games\Age of Empires 2 DE\<perfil>\resources\_common\scenario`).
 
@@ -118,7 +118,7 @@ In short, the `"batalla"` (battle) type creates a small flat map with a closed w
 side, the requested technologies researched by a trigger at start, full visibility, P2 attack-moving towards P1 after
 a few seconds, and optionally an XS script that writes the winner, fight time and survivors to the chat.
 
-**How aoe2radar uses it:** aoe2radar (MIT) never loads this code. It writes the JSON to a temporary folder, runs
+**How aoe2radar uses it:** aoe2radar never loads this code. It writes the JSON to a temporary folder, runs
 `escenarios.exe` as an external process (no window, with a timeout), reads the `--resultado` file and puts the
 scenario in the game profile's scenario folder. The aoe2radar installer ships this program prebuilt in
 `herramientas\escenarios\` with this license and a `FUENTES.txt` pointing to this repository: two separate programs

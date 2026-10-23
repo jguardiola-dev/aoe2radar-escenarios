@@ -2,11 +2,11 @@ aoe2radar-escenarios - código fuente / source code
 =================================================
 
 Esta carpeta contiene escenarios.exe, un programa APARTE de aoe2radar, con licencia GNU GPL v3 (ver LICENSE en esta
-misma carpeta). aoe2radar (licencia MIT) solo lo ejecuta como proceso externo y se comunica con él por archivos
+misma carpeta). aoe2radar solo lo ejecuta como proceso externo y se comunica con él por archivos
 (un JSON de entrada y el .aoe2scenario de salida). Son dos programas distintos distribuidos juntos (agregación).
 
 This folder contains escenarios.exe, a SEPARATE program from aoe2radar, licensed under the GNU GPL v3 (see LICENSE in
-this folder). aoe2radar (MIT license) only runs it as an external process and talks to it through files (a JSON input
+this folder). aoe2radar only runs it as an external process and talks to it through files (a JSON input
 and the .aoe2scenario output). They are two separate programs distributed together (aggregation).
 
 Código fuente completo de escenarios.exe / Complete corresponding source of escenarios.exe:
